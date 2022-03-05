@@ -5,8 +5,8 @@ import { ListCategoriesService } from '../../services/Categories/ListCategoriesS
 class ListCategoriesController {
   constructor(private listCategoriesService: ListCategoriesService) {}
 
-  handle(request: Request, response: Response): Response {
-    const allCategories = this.listCategoriesService.execute();
+  async handle(request: Request, response: Response): Promise<Response> {
+    const allCategories = await this.listCategoriesService.execute();
 
     return response.json(allCategories);
   }

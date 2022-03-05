@@ -5,7 +5,7 @@ import { CategoriesRepository } from '../../repositories/Categories/CategoriesRe
 
 interface IImportCategories {
   name: string;
-  description;
+  description: string;
 }
 
 class ImportCategoriesService {
@@ -44,12 +44,13 @@ class ImportCategoriesService {
 
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file);
-
-    categories.forEach((category) => {
+    categories.map(async (category) => {
       const { name, description } = category;
-      const categoryAlreadyExist = this.categoriesRepository.findByName(name);
+      const categoryAlreadyExist = await this.categoriesRepository.findByName(
+        name
+      );
       if (!categoryAlreadyExist) {
-        this.categoriesRepository.create({
+        await this.categoriesRepository.create({
           name,
           description
         });

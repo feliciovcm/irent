@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 import { ImportCategoriesService } from '../../services/Categories/ImportCategoriesService';
 
 class ImportCategoriesController {
-  constructor(private importCategoriesService: ImportCategoriesService) {}
   async handle(request: Request, response: Response): Promise<Response> {
     const { file } = request;
 
-    await this.importCategoriesService.execute(file);
+    const importCategoriesService = container.resolve(ImportCategoriesService);
+    await importCategoriesService.execute(file);
 
-    return response.send();
+    return response.status(201).send();
   }
 }
 

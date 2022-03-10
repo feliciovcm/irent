@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for modules/cars/entities/Cars.ts</title>
+    <title>Code coverage report for modules/accounts/useCases/AuthenticationUseCase/AutheticationService.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">modules/cars/entities</a> Cars.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">modules/accounts/useCases/AuthenticationUseCase</a> AutheticationService.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>56/56</span>
+                <span class='fraction'>60/62</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>56/56</span>
+                <span class='fraction'>60/62</span>
             </div>
         
             
@@ -119,33 +119,13 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -171,66 +151,104 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryColumn
-} from 'typeorm';
-import { v4 as uuidV4 } from 'uuid';
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { compare } from 'bcrypt';
+import { sign } from 'jsonwebtoken';
+import { inject, injectable } from 'tsyringe';
 &nbsp;
-import { Category } from './Category';
+import { AppError } from '../../../../errors/AppError';
+import { IUserRepository } from '../../repositories/Users/IUsersRepository';
 &nbsp;
-@Entity('cars')
-class Cars {
-  @PrimaryColumn()
-  id?: string;
+interface IRequestBody {
+  email: string;
+  password: string;
+}
 &nbsp;
-  @Column()
-  name: string;
+interface IResponse {
+  user: {
+    name: string;
+    email: string;
+  };
+  token: string;
+}
 &nbsp;
-  @Column()
-  description: string;
+@injectable()
+class AuthenticationService {
+  constructor(
+    @inject('UserRepository')
+    private userRepository: IUserRepository
+  ) {}
 &nbsp;
-  @Column()
-  daily_rate: number;
+  async execute({ email, password }: IRequestBody): Promise&lt;IResponse&gt; {
+    // verificar se usuario existe
 &nbsp;
-  @Column()
-  license_plate: string;
+    const user = await this.userRepository.findByEmail(email);
 &nbsp;
-  @Column()
-  fine_amount: number;
-&nbsp;
-  @Column()
-  brand: string;
-&nbsp;
-  @ManyToOne(() =&gt; Category)
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
-&nbsp;
-  @Column()
-  category_id: string;
-&nbsp;
-  @Column()
-  available: boolean;
-&nbsp;
-  @CreateDateColumn()
-  created_at: Date;
-&nbsp;
-  constructor() {
-    if (!this.id) {
-      this.id = uuidV4();
-      this.available = true;
+    if (!user) {
+      throw new AppError('Email or password incorrect', 400);
     }
+&nbsp;
+    // vverificar se senha está correta
+&nbsp;
+    const passwordMatch = await compare(password, user.password);
+&nbsp;
+    if (!passwordMatch) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      throw new AppError('Email or password incorrect', 400);</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+&nbsp;
+    const token = sign({}, 'f2d3afdfffbff1fa624b3cbb39b185c4071d92fd', {
+      subject: user.id,
+      expiresIn: '1d'
+    });
+&nbsp;
+    const userResponse: IResponse = {
+      token,
+      user: {
+        name: user.name,
+        email: user.email
+      }
+    };
+&nbsp;
+    return userResponse;
   }
 }
-export { Cars };
+&nbsp;
+export { AuthenticationService };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -240,14 +258,14 @@ export { Cars };
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at Wed Mar 09 2022 22:01:57 GMT-0300 (Horário Padrão de Brasília)
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

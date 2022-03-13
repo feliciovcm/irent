@@ -9,7 +9,9 @@ interface ICarsRepository {
     description,
     fine_amount,
     license_plate,
-    name
+    name,
+    specifications,
+    id
   }: ICreateCarsDTO): Promise<Cars>;
 
   findCarByLicensePlate(license_plate: string): Promise<Cars>;
@@ -19,6 +21,8 @@ interface ICarsRepository {
     category_id?: string,
     brand?: string
   ): Promise<Cars[]>;
+
+  findById(car_id: string): Promise<Cars>;
 }
 
 export { ICarsRepository };

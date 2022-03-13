@@ -12,8 +12,15 @@ class CarsRepositoryMock implements ICarsRepository {
     description,
     fine_amount,
     license_plate,
-    name
+    name,
+    specifications,
+    id
   }: ICreateCarsDTO): Promise<Cars> {
+    if (id) {
+      const car = this.cars.find((car) => car.id === id);
+      car.specifications = specifications;
+      return car;
+    }
     const car = new Cars();
 
     Object.assign(car, {
@@ -23,7 +30,8 @@ class CarsRepositoryMock implements ICarsRepository {
       description,
       fine_amount,
       license_plate,
-      name
+      name,
+      specifications
     });
 
     this.cars.push(car);
@@ -59,6 +67,12 @@ class CarsRepositoryMock implements ICarsRepository {
     });
 
     return cars;
+  }
+
+  async findById(car_id: string): Promise<Cars> {
+    const car = this.cars.find((car) => car.id === car_id);
+
+    return car;
   }
 }
 

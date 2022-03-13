@@ -17,7 +17,6 @@ class CreateCarsService {
     daily_rate,
     description,
     fine_amount,
-    available = true,
     license_plate,
     name
   }: ICreateCarsDTO): Promise<Cars> {
@@ -36,8 +35,7 @@ class CreateCarsService {
       description,
       fine_amount,
       license_plate,
-      name,
-      available
+      name
     });
 
     return car;

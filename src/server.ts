@@ -10,6 +10,7 @@ import { router } from './routes';
 import swaggerFile from './swagger.json';
 
 CreateConnection();
+
 const app = express();
 
 app.use(express.json());

@@ -35,6 +35,31 @@ class CarsRepositoryMock implements ICarsRepository {
 
     return car;
   }
+
+  async findAvailableCars(
+    name?: string,
+    category_id?: string,
+    brand?: string
+  ): Promise<Cars[]> {
+    if (!name && !category_id && !brand) {
+      const cars = this.cars.filter((car) => car.available === true);
+      return cars;
+    }
+
+    const cars = this.cars.filter((car) => {
+      if (
+        car.available &&
+        ((name && car.name === name) ||
+          (category_id && car.category_id === category_id) ||
+          (brand && car.brand === brand))
+      ) {
+        return car;
+      }
+      return null;
+    });
+
+    return cars;
+  }
 }
 
 export { CarsRepositoryMock };

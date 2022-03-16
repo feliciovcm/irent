@@ -4,6 +4,8 @@ import { IUserRepository } from '../modules/accounts/repositories/Users/IUsersRe
 import { UserRepository } from '../modules/accounts/repositories/Users/UserRepository';
 import { CarsRepository } from '../modules/cars/repositories/Cars/CarsRepository';
 import { ICarsRepository } from '../modules/cars/repositories/Cars/ICarsRepository';
+import { CarsImageRepository } from '../modules/cars/repositories/CarsImage/CarsImageRepository';
+import { ICarsImageRepository } from '../modules/cars/repositories/CarsImage/ICarsImageRepository';
 import { CategoriesRepository } from '../modules/cars/repositories/Categories/CategoriesRepository';
 import { ICategoryRepository } from '../modules/cars/repositories/Categories/ICategoriesRepository';
 import { ISpecificationRepository } from '../modules/cars/repositories/Specifications/ISpecificationRepository';
@@ -24,3 +26,8 @@ container.registerSingleton<ISpecificationRepository>(
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 
 container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
+
+container.registerSingleton<ICarsImageRepository>(
+  'CarsImageRepository',
+  CarsImageRepository
+);

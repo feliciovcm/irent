@@ -10,9 +10,9 @@ export default {
         filename: (request, file, callback) => {
           // create random string to avoid files with same name
           const fileHash = crypto.randomBytes(16).toString('hex');
-          const filename = `${fileHash}-${file.originalname}`;
+          const fileName = `${fileHash}-${file.originalname}`;
 
-          return callback(null, filename);
+          return callback(null, fileName);
         }
       })
     };

@@ -10,6 +10,8 @@ import { CategoriesRepository } from '../modules/cars/repositories/Categories/Ca
 import { ICategoryRepository } from '../modules/cars/repositories/Categories/ICategoriesRepository';
 import { ISpecificationRepository } from '../modules/cars/repositories/Specifications/ISpecificationRepository';
 import { SpecificationRepository } from '../modules/cars/repositories/Specifications/SpecificationRepository';
+import { IRentalsRepository } from '../modules/rentals/repositories/IRentalsRepository';
+import { RentalsRepository } from '../modules/rentals/repositories/RentalsRepository';
 
 // criando um singleton que terá a nossa interface ICategoryRepository,
 // sendo uma instancia da classe CategoriesRepository, com o nome similar.
@@ -30,4 +32,9 @@ container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository);
 container.registerSingleton<ICarsImageRepository>(
   'CarsImageRepository',
   CarsImageRepository
+);
+
+container.registerSingleton<IRentalsRepository>(
+  'RentalsRepository',
+  RentalsRepository
 );

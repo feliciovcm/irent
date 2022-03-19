@@ -31,7 +31,6 @@ describe('Create cars specifications', () => {
     };
 
     const car = await carsRepositoryMocked.create(car1);
-    console.log(car);
 
     const specification1: ICreateSpecificationDTO = {
       description: 'fake-description-1',
@@ -57,7 +56,6 @@ describe('Create cars specifications', () => {
     });
 
     const cars = await carsRepositoryMocked.findAvailableCars();
-    console.log(cars);
 
     expect(updatedCar.specifications).toEqual([
       newSpecification1,

@@ -2,6 +2,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '../../../../errors/AppError';
 import { getHoursDiffFromNow } from '../../../../utils/getHoursDiffFromNow';
+import { ICarsRepository } from '../../../cars/repositories/Cars/ICarsRepository';
 import { Rentals } from '../../entities/Rentals';
 import { IRentalsRepository } from '../../repositories/IRentalsRepository';
 
@@ -15,7 +16,9 @@ interface IRequest {
 class CreateRentalsService {
   constructor(
     @inject('RentalsRepository')
-    private rentalsRepository: IRentalsRepository
+    private rentalsRepository: IRentalsRepository,
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository
   ) {}
 
   async execute({
@@ -57,6 +60,8 @@ class CreateRentalsService {
       expected_return_date,
       user_id
     });
+
+    await this.carsRepository.updateAvailability(car_id, false);
 
     return rental;
   }

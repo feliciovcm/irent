@@ -1,8 +1,10 @@
 import { AppError } from '../../../../../errors/AppError';
+import { CarsRepositoryMock } from '../../../../cars/repositories/mocks/CarsRepositoryMock';
 import { RentalsRepositoryMock } from '../../../repositories/mocks/RentalsRepositoryMock';
 import { CreateRentalsService } from '../CreateRentalsService';
 
 let rentalsRepositoryMocked: RentalsRepositoryMock;
+let carsRepositoryMocked: CarsRepositoryMock;
 let createRentalsService: CreateRentalsService;
 
 function addHoursFromNow(hours: number) {
@@ -15,7 +17,11 @@ function addHoursFromNow(hours: number) {
 describe('Create rental', () => {
   beforeEach(() => {
     rentalsRepositoryMocked = new RentalsRepositoryMock();
-    createRentalsService = new CreateRentalsService(rentalsRepositoryMocked);
+    carsRepositoryMocked = new CarsRepositoryMock();
+    createRentalsService = new CreateRentalsService(
+      rentalsRepositoryMocked,
+      carsRepositoryMocked
+    );
   });
 
   it('should create a new rental', async () => {

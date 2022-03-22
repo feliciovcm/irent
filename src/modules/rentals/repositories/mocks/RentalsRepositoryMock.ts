@@ -29,7 +29,7 @@ class RentalsRepositoryMock implements IRentalsRepository {
       expected_return_date,
       start_date: new Date()
     });
-
+    this.rentals.push(rental);
     return rental;
   }
 

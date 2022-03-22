@@ -49,12 +49,11 @@ describe('Create Cars', () => {
       name: 'fake-car2'
     };
 
-    async function executeCarsCreation() {
-      await createCarsService.execute(car1);
-      await createCarsService.execute(car2);
-    }
+    await createCarsService.execute(car1);
 
-    expect(executeCarsCreation).rejects.toBeInstanceOf(AppError);
+    await expect(createCarsService.execute(car2)).rejects.toEqual(
+      new AppError('Car already exists')
+    );
   });
 
   it('should create a new car with available equals true by default', async () => {

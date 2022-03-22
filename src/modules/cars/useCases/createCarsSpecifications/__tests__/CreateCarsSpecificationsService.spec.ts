@@ -70,15 +70,11 @@ describe('Create cars specifications', () => {
       'fake-specification-id-2'
     ];
 
-    async function executeCreateCarsSpecificationsService() {
-      await createCarsSpecificationsService.execute({
+    await expect(
+      createCarsSpecificationsService.execute({
         car_id,
         specifications_id
-      });
-    }
-
-    expect(executeCreateCarsSpecificationsService).rejects.toBeInstanceOf(
-      AppError
-    );
+      })
+    ).rejects.toEqual(new AppError('Car does not exist'));
   });
 });

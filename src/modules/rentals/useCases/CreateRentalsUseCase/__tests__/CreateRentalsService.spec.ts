@@ -25,9 +25,19 @@ describe('Create rental', () => {
   });
 
   it('should create a new rental', async () => {
+    const car = await carsRepositoryMocked.create({
+      name: 'Fake-car',
+      description: 'fake-description',
+      daily_rate: 100,
+      license_plate: 'fake-license',
+      fine_amount: 40,
+      category_id: 'fake-category-id',
+      brand: 'brand'
+    });
+
     const rental = await createRentalsService.execute({
       user_id: 'fake-user-id',
-      car_id: 'fake-car-id',
+      car_id: car.id,
       expected_return_date: addHoursFromNow(24)
     });
 
@@ -36,48 +46,53 @@ describe('Create rental', () => {
   });
 
   it('should not create a new rental if user has an open rent', async () => {
-    async function executeCreateRentalsService() {
-      await createRentalsService.execute({
-        user_id: 'fake-user-id',
-        car_id: 'fake-car-id-1',
-        expected_return_date: addHoursFromNow(24)
-      });
+    await rentalsRepositoryMocked.create({
+      user_id: 'fake-user-id',
+      car_id: 'fake-car-id',
+      expected_return_date: addHoursFromNow(24)
+    });
 
-      await createRentalsService.execute({
-        user_id: 'fake-user-id',
+    await expect(
+      createRentalsService.execute({
         car_id: 'fake-car-id-2',
-        expected_return_date: addHoursFromNow(24)
-      });
-    }
-    expect(executeCreateRentalsService).rejects.toBeInstanceOf(AppError);
+        expected_return_date: addHoursFromNow(24),
+        user_id: 'fake-user-id'
+      })
+    ).rejects.toEqual(new AppError('User already has an open rental'));
   });
 
   it('should not create a new rental if car has an open rent', async () => {
-    async function executeCreateRentalsService() {
-      await createRentalsService.execute({
-        user_id: 'fake-user-id-1',
-        car_id: 'fake-car-id',
-        expected_return_date: addHoursFromNow(24)
-      });
+    const rental = await rentalsRepositoryMocked.create({
+      user_id: 'fake-user-id',
+      car_id: 'fake-car-id',
+      expected_return_date: addHoursFromNow(24)
+    });
 
-      await createRentalsService.execute({
+    await expect(
+      createRentalsService.execute({
         user_id: 'fake-user-id-2',
-        car_id: 'fake-car-id',
+        car_id: rental.car_id,
         expected_return_date: addHoursFromNow(24)
-      });
-    }
-    expect(executeCreateRentalsService).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError('Car is unavailable'));
   });
 
   it('should not create a new rental if expected return date is under 24 hours', async () => {
-    async function executeCreateRentalsService() {
-      await createRentalsService.execute({
+    const car = await carsRepositoryMocked.create({
+      name: 'Fake-car',
+      description: 'fake-description',
+      daily_rate: 100,
+      license_plate: 'fake-license',
+      fine_amount: 40,
+      category_id: 'fake-category-id',
+      brand: 'brand'
+    });
+    await expect(
+      createRentalsService.execute({
         user_id: 'fake-user-id',
-        car_id: 'fake-car-id',
+        car_id: car.id,
         expected_return_date: addHoursFromNow(23)
-      });
-    }
-
-    expect(executeCreateRentalsService).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError('Rental must be at least 24hours'));
   });
 });

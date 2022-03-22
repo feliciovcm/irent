@@ -39,13 +39,12 @@ describe('Authenticate User', () => {
   });
 
   it('should not authenticate a nonexistent user', async () => {
-    async function executeAuthentication() {
-      await authenticationService.execute({
+    await expect(
+      authenticationService.execute({
         email: 'fake-email123@email.com',
         password: 'fake-password123'
-      });
-    }
-    expect(executeAuthentication).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError('Email or password incorrect'));
   });
 
   it('should not authenticate an user with incorrect password', async () => {
@@ -65,14 +64,12 @@ describe('Authenticate User', () => {
 
     const createdUser = await userRepositoryMocked.findByEmail(user.email);
 
-    async function executeAuthentication() {
-      await authenticationService.execute({
+    expect(createdUser).toHaveProperty('email', user.email);
+    await expect(
+      authenticationService.execute({
         email: user.email,
         password: 'fake-wrong-password'
-      });
-    }
-
-    expect(createdUser).toHaveProperty('email', user.email);
-    expect(executeAuthentication).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toEqual(new AppError('Email or password incorrect'));
   });
 });

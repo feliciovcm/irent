@@ -27,7 +27,6 @@ class CreateRentalsService {
     user_id
   }: IRequest): Promise<Rentals> {
     // - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro
-
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(
       car_id
     );

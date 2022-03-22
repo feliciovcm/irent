@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '../../../../errors/AppError';
-import { getHoursDiffFromNow } from '../../../../utils/getHoursDiffFromNow';
+import { getHoursDiffFromNow } from '../../../../utils/DateDiffFromNow';
 import { ICarsRepository } from '../../../cars/repositories/Cars/ICarsRepository';
 import { Rentals } from '../../entities/Rentals';
 import { IRentalsRepository } from '../../repositories/IRentalsRepository';

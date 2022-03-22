@@ -6,10 +6,21 @@ class RentalsRepositoryMock implements IRentalsRepository {
   rentals: Rentals[] = [];
 
   async create({
+    id,
+    end_date,
+    total,
     car_id,
     user_id,
     expected_return_date
   }: ICreateRentalDTO): Promise<Rentals> {
+    if (id) {
+      const rental = this.rentals.find((rental) => rental.id === id);
+      rental.end_date = end_date;
+      rental.total = total;
+
+      return rental;
+    }
+
     const rental = new Rentals();
 
     Object.assign(rental, {
@@ -34,6 +45,12 @@ class RentalsRepositoryMock implements IRentalsRepository {
     const rental = this.rentals.find(
       (rent) => rent.user_id === user_id && !rent.end_date
     );
+
+    return rental;
+  }
+
+  async findById(id: string): Promise<Rentals> {
+    const rental = this.rentals.find((rent) => rent.id === id);
 
     return rental;
   }

@@ -52,6 +52,17 @@ class RentalsRepository implements IRentalsRepository {
 
     return rental;
   }
+
+  async findByUserId(user_id: string): Promise<Rentals[]> {
+    // trazer os dados do carro na listagem dos alugueis
+    // necessita o manytoone joincolumn na entidade de alugies
+    const rentals = await this.repository.find({
+      where: { user_id },
+      relations: ['car']
+    });
+
+    return rentals;
+  }
 }
 
 export { RentalsRepository };

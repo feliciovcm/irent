@@ -2,8 +2,11 @@ import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 
+import auth from '../../../../config/auth';
 import { AppError } from '../../../../errors/AppError';
+import { addDays } from '../../../../utils/DateDiffFromNow';
 import { IUserRepository } from '../../repositories/Users/IUsersRepository';
+import { UsersTokensRepository } from '../../repositories/UsersTokens/UsersTokensRepository';
 
 interface IRequestBody {
   email: string;
@@ -16,13 +19,16 @@ interface IResponse {
     email: string;
   };
   token: string;
+  refresh_token: string;
 }
 
 @injectable()
 class AuthenticationService {
   constructor(
     @inject('UserRepository')
-    private userRepository: IUserRepository
+    private userRepository: IUserRepository,
+    @inject('UsersTokensRepository')
+    private usersTokensRepository: UsersTokensRepository
   ) {}
 
   async execute({ email, password }: IRequestBody): Promise<IResponse> {
@@ -42,9 +48,22 @@ class AuthenticationService {
       throw new AppError('Email or password incorrect', 400);
     }
 
-    const token = sign({}, 'f2d3afdfffbff1fa624b3cbb39b185c4071d92fd', {
+    const token = sign({}, auth.token_secret, {
       subject: user.id,
-      expiresIn: '1d'
+      expiresIn: auth.token_expires_in
+    });
+
+    const refresh_token = sign({ email }, auth.refresh_token_secret, {
+      subject: user.id,
+      expiresIn: auth.refresh_token_expires_in
+    });
+
+    const refresh_token_expires_date = addDays(30);
+
+    await this.usersTokensRepository.create({
+      user_id: user.id,
+      refresh_token,
+      expires_date: refresh_token_expires_date
     });
 
     const userResponse: IResponse = {
@@ -52,7 +71,8 @@ class AuthenticationService {
       user: {
         name: user.name,
         email: user.email
-      }
+      },
+      refresh_token
     };
 
     return userResponse;

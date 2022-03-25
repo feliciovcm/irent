@@ -26,3 +26,7 @@ export function getDaysDiffFromNow(date: Date) {
 
   return compare;
 }
+
+export function addDays(days: number): Date {
+  return dayjs().add(days, 'days').toDate();
+}

@@ -6,7 +6,7 @@ import auth from '../../../../config/auth';
 import { AppError } from '../../../../errors/AppError';
 import { addDays } from '../../../../utils/DateDiffFromNow';
 import { IUserRepository } from '../../repositories/Users/IUsersRepository';
-import { UsersTokensRepository } from '../../repositories/UsersTokens/UsersTokensRepository';
+import { IUsersTokensRepository } from '../../repositories/UsersTokens/IUsersTokensRepository';
 
 interface IRequestBody {
   email: string;
@@ -28,7 +28,7 @@ class AuthenticationService {
     @inject('UserRepository')
     private userRepository: IUserRepository,
     @inject('UsersTokensRepository')
-    private usersTokensRepository: UsersTokensRepository
+    private usersTokensRepository: IUsersTokensRepository
   ) {}
 
   async execute({ email, password }: IRequestBody): Promise<IResponse> {

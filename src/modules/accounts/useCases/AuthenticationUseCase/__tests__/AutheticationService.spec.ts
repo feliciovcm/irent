@@ -1,17 +1,23 @@
 import { AppError } from '../../../../../errors/AppError';
 import { ICreateUserDTO } from '../../../dtos/ICreateUserDTO';
 import { UserRepositoryMock } from '../../../repositories/mocks/UserRepositoryMock';
+import { UsersTokensRepositoryMock } from '../../../repositories/mocks/UsersTokensRepositoryMock';
 import { CreateUserService } from '../../CreateUserUseCase/CreateUserService';
 import { AuthenticationService } from '../AutheticationService';
 
-let authenticationService: AuthenticationService;
 let userRepositoryMocked: UserRepositoryMock;
+let usersTokensRepositoryMocked: UsersTokensRepositoryMock;
+let authenticationService: AuthenticationService;
 let createUserService: CreateUserService;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     userRepositoryMocked = new UserRepositoryMock();
-    authenticationService = new AuthenticationService(userRepositoryMocked);
+    usersTokensRepositoryMocked = new UsersTokensRepositoryMock();
+    authenticationService = new AuthenticationService(
+      userRepositoryMocked,
+      usersTokensRepositoryMocked
+    );
     createUserService = new CreateUserService(userRepositoryMocked);
   });
 

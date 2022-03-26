@@ -30,3 +30,7 @@ export function getDaysDiffFromNow(date: Date) {
 export function addDays(days: number): Date {
   return dayjs().add(days, 'days').toDate();
 }
+
+export function addHours(hours: number): Date {
+  return dayjs().add(hours, 'hour').toDate();
+}

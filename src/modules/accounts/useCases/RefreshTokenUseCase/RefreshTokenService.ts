@@ -15,6 +15,11 @@ interface IDecode {
   sub: string;
 }
 
+interface IResponse {
+  new_refresh_token: string;
+  new_token: string;
+}
+
 @injectable()
 class RefreshTokenService {
   constructor(
@@ -22,7 +27,7 @@ class RefreshTokenService {
     private usersTokensRepository: IUsersTokensRepository
   ) {}
 
-  async execute({ refresh_token }: IRequest): Promise<string> {
+  async execute({ refresh_token }: IRequest): Promise<IResponse> {
     const { sub, email } = verify(
       refresh_token,
       auth.refresh_token_secret
@@ -47,6 +52,11 @@ class RefreshTokenService {
       expiresIn: auth.refresh_token_expires_in
     });
 
+    const new_token = sign({}, auth.token_secret, {
+      subject: user_id,
+      expiresIn: auth.token_expires_in
+    });
+
     const expires_date = addDays(30);
 
     await this.usersTokensRepository.create({
@@ -54,9 +64,8 @@ class RefreshTokenService {
       refresh_token: new_refresh_token,
       expires_date
     });
-    console.log(new_refresh_token);
 
-    return new_refresh_token;
+    return { new_refresh_token, new_token };
   }
 }
 

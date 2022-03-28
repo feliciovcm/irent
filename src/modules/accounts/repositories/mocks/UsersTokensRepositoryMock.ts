@@ -18,8 +18,11 @@ class UsersTokensRepositoryMock implements IUsersTokensRepository {
       refresh_token
     });
 
+    this.usersTokens.push(userToken);
+
     return userToken;
   }
+
   async findUserByIdAndRefreshToken(
     user_id: string,
     refresh_token: string
@@ -29,6 +32,7 @@ class UsersTokensRepositoryMock implements IUsersTokensRepository {
     );
     return userToken;
   }
+
   async deleteByTokenId(token_id: string): Promise<void> {
     const indexOfItem = this.usersTokens.findIndex(
       (item) => item.id === token_id
@@ -36,6 +40,7 @@ class UsersTokensRepositoryMock implements IUsersTokensRepository {
 
     this.usersTokens.splice(indexOfItem, 1);
   }
+
   async findByToken(token: string): Promise<UsersTokens> {
     const userToken = this.usersTokens.find(
       (item) => item.refresh_token === token

@@ -1,4 +1,6 @@
 import 'reflect-metadata';
+// use dotenv lib to insert environment variables into application
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
 import swaggerUi from 'swagger-ui-express';
 

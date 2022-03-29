@@ -16,7 +16,7 @@ class RefreshTokenController {
       refresh_token: token
     });
 
-    return response.status(201).json({ refresh_token });
+    return response.status(201).json(refresh_token);
   }
 }
 

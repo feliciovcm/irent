@@ -15,7 +15,7 @@ class ForgotPasswordEmailService {
     private userRepository: IUserRepository,
     @inject('UsersTokensRepository')
     private usersTokensRepository: IUsersTokensRepository,
-    @inject('EtherealMailProvider')
+    @inject('MailProvider')
     private etherealMailProvider: IMailProvider
   ) {}
 

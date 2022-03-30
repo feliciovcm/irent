@@ -6,3 +6,4 @@ dist
 .eslintignore
 coverage
 .env
+ormconfig.json

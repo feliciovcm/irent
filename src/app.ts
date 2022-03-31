@@ -10,12 +10,15 @@ import CreateConnection from './database';
 import 'express-async-errors';
 import './container';
 import { AppError } from './errors/AppError';
+import rateLimiter from './middlewares/rateLimiter';
 import { router } from './routes';
 import swaggerFile from './swagger.json';
 
 CreateConnection();
 
 const app = express();
+
+app.use(rateLimiter);
 
 app.use(express.json());
 

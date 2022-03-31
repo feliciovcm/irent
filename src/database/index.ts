@@ -14,12 +14,14 @@ import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 //   });
 // });
 
-export default async (host = 'database'): Promise<Connection> => {
+// Rodar local, passar na função abaixo, parametro( host = 'database')
+// e dentro do object.assign (host: process.env.NODE_ENV === 'test' ? 'localhost' : host,)
+
+export default async (): Promise<Connection> => {
   const defaultOptions = await getConnectionOptions();
 
   return createConnection(
     Object.assign(defaultOptions, {
-      host: process.env.NODE_ENV === 'test' ? 'localhost' : host,
       database:
         process.env.NODE_ENV === 'test' ? 'irent_test' : defaultOptions.database
     })

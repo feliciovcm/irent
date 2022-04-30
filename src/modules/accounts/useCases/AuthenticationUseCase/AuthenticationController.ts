@@ -6,6 +6,7 @@ import { AuthenticationService } from './AutheticationService';
 class AuthenticationController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { password, email } = request.body;
+    console.log(request.body);
 
     const authenticationService = container.resolve(AuthenticationService);
 

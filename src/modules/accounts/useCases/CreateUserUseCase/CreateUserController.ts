@@ -9,14 +9,15 @@ class CreateUserController {
 
     const createUserService = container.resolve(CreateUserService);
 
-    await createUserService.execute({
+    const user = await createUserService.execute({
       name,
       password,
       email,
       driver_license
     });
+    console.log(user);
 
-    return response.status(201).send();
+    return response.status(201).json(user);
   }
 }
 
